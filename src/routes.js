@@ -21,6 +21,9 @@ routes.post('/signup', upload.single('avatar'), UserController.store)
 // Every '/app' route will be accessible only by logged users
 routes.use('/app', authMiddleware)
 
+// Sign out
+routes.get('/app/signout', SessionController.destroy)
+
 routes.get('/app/dashboard', (req, res) => {
   console.log(req.session.user)
   return res.render('dashboard')
