@@ -10,12 +10,16 @@ const guestMiddleware = require('./app/middlewares/guest')
 const UserController = require('./app/controllers/UserController')
 const SessionController = require('./app/controllers/SessionController')
 const DashboardController = require('./app/controllers/DashboardController')
+const FileController = require('./app/controllers/FileController')
 
 routes.use((req, res, next) => {
   res.locals.flashSuccess = req.flash('success')
   res.locals.flashError = req.flash('error')
   next()
 })
+
+// Route to get files from uploads dir
+routes.get('/files/:file', FileController.show)
 
 // Sign in
 routes.get('/', guestMiddleware, SessionController.create)
