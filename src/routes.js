@@ -37,7 +37,8 @@ routes.use('/app', authMiddleware)
 // Sign out
 routes.get('/app/signout', SessionController.destroy)
 
-routes.get('/app/dashboard', DashboardController.index)
+routes.get('/app/user-dashboard', DashboardController.user)
+routes.get('/app/provider-dashboard', DashboardController.provider)
 
 routes.get('/app/appointments/new/:provider', AppointmentController.create)
 routes.post('/app/appointments/new/:provider', AppointmentController.store)

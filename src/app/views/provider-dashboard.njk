@@ -1,0 +1,27 @@
+{% extends "_layouts/default.njk" %}
+
+{% block body %}
+  <div class="content">
+    <strong>Hello,
+      {{ user.name }}</strong>
+    {% if appointments.length > 0 %}
+      <p>You have the following appointments scheduled for today:</p>
+    {% else %}
+      <p>There are no appointments scheduled for today yet.</p>
+    {% endif %}
+    <ul class="providers">
+      {% for appointment in appointments %}
+        <li class="provider">
+          <div>
+            <img src="/files/{{ appointment.user.avatar }}"/>
+            <strong>{{ appointment.user.name }}</strong>
+            <br>
+            <strong>{{ appointment.date | date("HH:mm") }}</strong>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <a href="/app/signout" class="logout">Sign out</a>
+  </div>
+{% endblock %}
